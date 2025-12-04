@@ -12,9 +12,9 @@ print(data)
 
 ## each subject wise highest, lowest and avgerage 
 
-highest = np.max(arr, axis = 0)
-lowest = np.min(arr, axis = 0)
-avg = np.mean(arr, axis = 0)
+highest = np.max(data, axis = 0)
+lowest = np.min(data, axis = 0)
+avg = np.mean(data, axis = 0)
 for i in range(subject):
     print(f"Subject {i + 1} : highest = {highest[i]}, lowest = {lowest[i]}, avg = {avg[i]:.2f}")
 
@@ -22,9 +22,9 @@ for i in range(subject):
 ##overall subject highest, lowest, and mean
 
 
-overall_highest = np.max(arr)
-overall_lowest = np.min(arr)
-overall_avg = np.mean(arr)
+overall_highest = np.max(data)
+overall_lowest = np.min(data)
+overall_avg = np.mean(data)
 
 print("overall subject highest marks:", overall_highest)
 print("overall subject lowest marks:", overall_lowest)
@@ -44,7 +44,7 @@ print("passed student percentage:", passed)
 
 ##find the total marks in top three rankers
 
-total_marks = np.sum(arr, axis = 1)
+total_marks = np.sum(data, axis = 1)
 sorted_marks = np.argsort(total_marks)[::-1]
 for i in range(3):
     idx = sorted_marks[i]
@@ -58,6 +58,7 @@ print("after adding grace_marks", grace_marks)
 
 
 ## after adding grace marks find passed_student and percentage
+passed_marks = 35
 
 passed_percentage_after = np.sum(np.all(grace_marks >= passed_marks, axis = 1))
 after_passed_marks = (passed_percentage_after / student * 100)
@@ -68,8 +69,12 @@ print("after adding grace marks passed student:", after_passed_marks)
 ## comparsion of both before and after adding grace marks
 
 print("before passed marks", passed_student)
-print("before passed percentage {:.2f}".format(passed))
+print("after passed marks", passed_percentage_after)
+print("final passed_marks newly passed", passed_percentage_after - passed_student)
 
-print("final passed_marks", passed_percentage_after - passed_student)
-print("final passed percentage:{:.2f} ".format(after_passed_marks - passed) )
+
+print("before passed percentage {:.2f}".format(passed))
+print("after passed percentage {:.2f}".format(after_passed_marks))
+#print("final passed_marks newly passed", passed_percentage_after - passed_student)
+print("final passed percentage increase:{:.2f} ".format(after_passed_marks - passed) )
 
