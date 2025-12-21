@@ -1,14 +1,23 @@
 import numpy as np
+import pandas as pd
 
 student = int(input("Enter the count of student: "))
 subject = int(input("Enter the marks of student each subject: "))
+subjects = []
+print("\nEnter subject names:")
+for i in range(subject):
+    subjects.append(input(f"subject {i+1} name:"))
+students = []
 arr = []
 print("\n Enter the each subject marks: ")
 for i in range(student):
+    name = input(f"\nEnter student {i+1} name:")
+    students.append(name)
     subject_wise = list(map(int, input().split()))
     arr.append(subject_wise)
 data = np.array(arr)
-print(data)
+df = pd.DataFrame(data, index = students, columns = subjects)
+print(df)
 
 ## each subject wise highest, lowest and avgerage 
 
@@ -54,7 +63,8 @@ for i in range(3):
 ## add grace marks 5
 
 grace_marks = data + 5
-print("after adding grace_marks", grace_marks)
+grace_df = pd.DataFrame(grace_marks, index = students, columns = subjects)
+print("after adding grace_marks", grace_df)
 
 
 ## after adding grace marks find passed_student and percentage
